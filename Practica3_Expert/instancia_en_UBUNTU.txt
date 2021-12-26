@@ -1,0 +1,39 @@
+crear una carpeta donde llamada dockerweb en HOME asi
+mkdir ~/dockerweb/
+
+Creamos un archivo llamado Dockerfile asi:
+nano ~/dockerweb/Dockerfile
+
+Contenido de Dockerfile
+FROM ubuntu:latest
+MAINTAINER FERNANDO fcanicama@gmail.com
+RUN apt-get update
+RUN apt-get -y install apache2
+expose 80
+CMD /usr/sbin/apache2ctl -D FOREGROUND
+
+Donde:
+ubuntu:latest :  Sistema operativo donde se van a montar los programas
+FERNANDO fcanicama@gmail.com : Nombre y correo de la persona que creo el contenedor
+RUN apt-get update : Aplicaciones a instalar y/o actualizar
+expose 80 : Puerto que va a quedar abierto 
+CMD /usr/sbin/apache2ctl -D FOREGROUND : Ejecutar en la terminal como Demonio.
+
+Ejecutamos en docker el contenido de Dockerfile asi:
+sudo docker build -t web ~/dockerweb/
+Donde
+web : Nombre que se le asignara a la nueva imagen que crearemos.
+~/dockerweb/ : Path donde esta nuestro Dockerfile previamente creado.
+
+
+Si miramos nuestras imágenes de docker vamos a ver una nueva llamada web.
+sudo docker images
+
+
+Ahora creamos nuestro contenedor a partir de la imagen web asi:
+
+sudo docker run -d -p 8085:80 web
+Donde:
+-d : Corre el contenedor en background.
+-p 8085:80 : Lee el puerto 80 del contenedor y lo corre en el puerto 8085 de la maquina anfitrion.
+web : Nombre de la imagen a correr.

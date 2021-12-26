@@ -1,0 +1,47 @@
+Para el Origen
+
+aws s3api create-bucket \
+--bucket source \
+--region us-east-1 \
+--profile acctA
+aws s3api put-bucket-versioning \
+--bucket source \
+--versioning-configuration Status=Enabled \
+--profile acctA
+
+ Para el destino
+
+aws s3api create-bucket \
+--bucket destination \
+--region us-west-2 \
+--create-bucket-configuration LocationConstraint=us-west-2 \
+--profile acctA
+
+aws s3api put-bucket-versioning \
+--bucket destination \
+--versioning-configuration Status=Enabled \
+--profile acctA
+
+Copiar la siguiente política de confianza y guárdela en un archivo llamado S3-role-trust-policy.json en el directorio actual en su equipo local. Esta política concede a la entidad principal de servicio de Amazon S3 permisos para asumir el rol.
+
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Principal":{
+            "Service":"s3.amazonaws.com"
+         },
+         "Action":"sts:AssumeRole"
+      }
+   ]
+}
+
+
+
+Ejecute el siguiente comando para crear un rol.
+
+$ aws iam create-role \
+--role-name replicationRole \
+--assume-role-policy-document file://s3-role-trust-policy.json  \
+--profile acctA
