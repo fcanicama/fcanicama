@@ -1,0 +1,41 @@
+package com.example.parctica2expert.servercambios.entity;
+
+
+
+public class Cambios {
+
+	
+	private Socios socios;
+	private String estado;
+	
+	public Cambios() {
+		
+	}
+
+	public Cambios(Socios socios, String estado) {
+		super();
+		this.socios = socios;
+		this.estado = estado;
+	}
+
+	public Socios getSocios() {
+		return socios;
+	}
+
+	public void setSocios(Socios socios) {
+		this.socios = socios;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	
+	
+	
+
+}

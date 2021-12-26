@@ -1,0 +1,5 @@
+package com.example.practica2expert.serversocios;
+
+public @interface RibbonClient {
+
+}

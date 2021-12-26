@@ -1,0 +1,9 @@
+package com.example.parctica2expert.servercambios.entity;
+
+
+
+@Entity
+@Table(name = "cambios")
+public class Cambios implements serializable{
+
+}

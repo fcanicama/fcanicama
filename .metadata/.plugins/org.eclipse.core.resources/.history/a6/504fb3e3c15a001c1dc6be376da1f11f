@@ -1,0 +1,22 @@
+package com.example.parctica2expert.servercambios.entity;
+
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.annotation.Generated;
+
+
+public class Cambios implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
+	private String dni;
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
+
+}
